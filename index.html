@@ -143,6 +143,42 @@ h2 {
 .escudo:hover {
   transform: scale(1.1) rotate(3deg);
 }
+
+  .ref-box {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 15px;
+  width: 250px;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
 </style>
 </head>
 
@@ -159,7 +195,7 @@ h2 {
     <a href="#frase">Frase</a>
     <a href="#sobre">Sobre</a>
     <a href="#time">Corinthians</a>
-    <a href="#curiosidade">Curiosidade</a>
+    <a href="#referencias">Referências</a>
   </nav>
 </header>
 
@@ -201,19 +237,28 @@ h2 {
   </div>
 </section>
 
-<section id="curiosidade" class="hidden">
+
+  <section id="referencias" class="hidden">
   <div class="container">
-    <h2>Curiosidade Aleatória</h2>
-    <p>
-      Você sabia que, muitas vezes, quando você admira muito uma qualidade em alguém,
-      isso pode ser um reflexo de algo que já existe em você — mas que você ainda não reconheceu?
-      <br><br>
-      Na psicologia, isso se relaciona com a projeção psicológica: a mente tende a enxergar no outro
-      tanto o que falta quanto o que está “escondido” dentro de si. Por isso, às vezes, você não está
-      vendo alguém incrível — está vendo um pedaço seu que ainda não assumiu.
-    </p>
+    <h2>Referências</h2>
+
+    <div class="ref-box">
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Neymar_2018.jpg" alt="Neymar">
+        <h3>Neymar</h3>
+        <p>Criatividade, ousadia e confiança para decidir.</p>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Lionel_Messi_20180626.jpg" alt="Messi">
+        <h3>Messi</h3>
+        <p>Consistência, visão de jogo e execução absurda.</p>
+      </div>
+
+    </div>
   </div>
-</section>
+  </section>
   <audio id="bg-music" loop>
   <source src="puma.m4a" type="audio/mp4">
 </audio>
