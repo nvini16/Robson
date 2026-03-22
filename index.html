@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robson</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+    }
+
+    header {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 3px solid #fff;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .frase {
+      font-size: 1.5rem;
+      font-style: italic;
+      background: #111;
+      padding: 20px;
+      border-left: 5px solid #fff;
+    }
+
+    .corinthians {
+      background: linear-gradient(black, #222);
+    }
+
+    .corinthians h2 {
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      border-top: 2px solid #fff;
+    }
+
+    /* Responsivo */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .frase {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Robson</h1>
+  <nav>
+    <a href="#frase">Frase</a>
+    <a href="#time">Time</a>
+    <a href="#curiosidade">Curiosidade</a>
+  </nav>
+</header>
+
+<section id="frase">
+  <div class="container">
+    <h2>Frase Marcante</h2>
+    <p class="frase">
+      "Não existe sorte ou azar. Se alguma coisa acontece é porque tinha que acontecer."
+    </p>
+  </div>
+</section>
+
+<section id="time" class="corinthians">
+  <div class="container">
+    <h2>Time do Coração</h2>
+    <p>Corinthians</p>
+    <button class="btn" onclick="mudarTema()">Mudar Tema</button>
+  </div>
+</section>
+
+<section id="curiosidade">
+  <div class="container">
+    <h2>Curiosidade Aleatória</h2>
+    <p>
+      Você sabia que, muitas vezes, quando você admira muito uma qualidade em alguém,
+      isso pode ser um reflexo de algo que já existe em você — mas que você ainda não reconheceu?
+      <br><br>
+      Na psicologia, isso se relaciona com a projeção psicológica: a mente tende a enxergar no outro
+      tanto o que falta quanto o que está “escondido” dentro de si. Por isso, às vezes, você não está
+      vendo alguém incrível — está vendo um pedaço seu que ainda não assumiu.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>Site criado para Robson</p>
+</footer>
+
+<script>
+  function mudarTema() {
+    const body = document.body;
+
+    if (body.style.background === "white") {
+      body.style.background = "black";
+      body.style.color = "white";
+    } else {
+      body.style.background = "white";
+      body.style.color = "black";
+    }
+  }
+</script>
+
+</body>
+</html>
