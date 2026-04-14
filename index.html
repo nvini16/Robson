@@ -1,4 +1,396 @@
-<!DOCTYPE html>
+Esse é o código: <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Script de rastreamento-->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w960u7ffop");
+</script>
+  
+<title>Corinthians | RJ</title>
+
+<style>
+
+:root {
+  --bg: #000;
+  --text: #fff;
+  --card: #111;
+  --accent: #c8102e; /* vermelho no dark */
+}
+
+body.light {
+  --bg: #f5f5f5;
+  --text: #111;
+  --card: #fff;
+--accent: #0ea5e9; /* azul meio neonzinho */
+}
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+header {
+  background: var(--card);
+  padding: 20px;
+  text-align: center;
+  border-bottom: 3px solid var(--accent);
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: bold;
+}
+
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.frase {
+  font-size: 1.4rem;
+  font-style: italic;
+  background: var(--card);
+  padding: 20px;
+  border-left: 5px solid var(--accent);
+  border-radius: 10px;
+}
+
+/* FOTO ROBSON */
+.foto-box {
+  margin-top: 20px;
+}
+
+.foto-box img {
+  width: 200px;
+  border-radius: 15px;
+  transition: 0.4s;
+  border: 3px solid var(--accent);
+}
+
+.foto-box img:hover {
+  transform: scale(1.08);
+  filter: brightness(1.2);
+}
+
+/* CORINTHIANS */
+.corinthians {
+  background: linear-gradient(135deg, #000, #1a1a1a);
+  border-top: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+/* BOTÃO */
+.btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+/* CURIOSIDADE */
+#curiosidade p {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 10px;
+  line-height: 1.6;
+}
+
+/* ANIMAÇÃO */
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .foto-box img {
+    width: 150px;
+  }
+}
+
+  .escudo {
+  width: 120px;
+  height: 250;
+  transition: 0.3s;
+    margin: 20px auto;
+    border: 3px solid #c8102e;
+    border-radius: 20px;
+}
+
+.escudo:hover {
+  transform: scale(1.1) rotate(3deg);
+}
+
+  .ref-box {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 15px;
+  width: 250px;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+  /* imagem de fundo do header*/
+  .bg-box1 {
+  width: 100%;
+  height: 300px;
+
+  background: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("papeis-de-parede-do-corinthians-uma-paixao-alvinegra-na-decoracao.jpg");
+
+  background-size: cover;
+  background-position: center;
+  }
+
+  /* imagem de fundo footer */
+  .bg-box2 {
+  width: 100%;
+  height: 300px;
+
+  background: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("download (2).jpeg");
+
+  background-size: cover;
+  background-position: center;
+  }
+
+  /* menu interativo */
+
+  
+.menuinterative {
+    position: relative;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 60px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 35px rgba( 0, 0, 0, 0.5);
+    border: 0.5px solid #ccc;
+}
+</style>
+</head>
+
+<body>
+
+<header class="bg-box1">
+  <h1>RJ</h1>
+  <nav>
+    <button onclick="toggleMusic()" 
+      class="btn">Música</button>
+  </nav>
+  <br>
+  <nav class="menuinterative">
+    <a href="#frase">Frase</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#time">Timão</a>
+    <br><br>
+    <a href="#referencias">Referências</a>
+  </nav>
+</header>
+
+<section id="sobre" class="hidden">
+  <div class="container">
+    <h2>Sobre o Robson</h2>
+
+    <div class="foto-box">
+      <!-- TROQUE ESSE LINK PELA FOTO REAL NATHAN  -->
+
+      
+      <img sc="https://via.placeholder.com/200" at="Foto do Robson">
+    </div>
+
+  </div>
+</section>
+
+<section id="frase" class="hidden">
+  <div class="container">
+    <h2>Frase Marcante</h2>
+    <p class="frase">
+      "Não existe sorte ou azar. Se alguma coisa acontece é porque tinha que acontecer."
+    </p>
+  </div>
+</section>
+
+<section id="time" class="corinthians hidden">
+  <div class="container">
+    <h2>Time do Coração</h2>
+
+    <!-- ESCUDO SIMPLES -->
+    <img src="download.jpeg" class="escudo" alt="Escudo do Corinthians">
+
+    <p style="color: var(--accent); font-weight: bold;">
+      Sport Club Corinthians Paulista
+    </p>
+
+    <button class="btn" onclick="toggleTema()">Alternar Tema</button>
+  </div>
+</section>
+
+
+  <section id="referencias" class="hidden">
+  <div class="container">
+    <h2>Referências</h2>
+
+    <div class="ref-box">
+
+      <div class="card">
+        <img src="ddf968aa7c3922aa9076f41643ed5239.jpg" alt="Neymar">
+        <h3>Neymar</h3>
+        <p></p>
+      </div>
+
+      <div class="card">
+        <img src="2507b2f758ef71c4edd806fba4208387.jpg" alt="Messi">
+        <h3>Messi</h3>
+        <p></p>
+      </div>
+
+      <div class="card">
+        <img src="images.jpeg" alt="CHAMA – (Bem 10)">
+        <h3>CHAMA – (Bem 10)</h3>
+        <p></p>
+      </div>
+
+      <div class="card">
+        <img src="character-analysis-michael-kaiser-v0-4jd6763vto2e1.jpg" alt="KAISER">
+          <h3>KAISER</h3>
+          <p></p>
+      </div>
+
+      <div class="card">
+        <img src="165858375862dbface6e3b0_1658583758_3x2_md.jpg" alt="Power Rangers">
+        <h3>Power Rangers</h3>
+        <p></p>
+      </div>
+
+      <div class="card">
+        <img src="20241216-ovicio-shadow-sonic-3-555x555.webp" alt="Sonic">
+        <h3>Sonic</h3>
+        <p></p>
+      </div>
+
+      
+
+    </div>
+  </div>
+
+    
+  </section>
+
+  
+  <audio id="bg-music" loop>
+  <source src="puma.m4a" type="audio/mp4">
+</audio>
+
+  <footer class="bg-box2">
+    
+  </footer>
+
+<script>
+function toggleTema() {
+  document.body.classList.toggle("light");
+}
+
+/* SCROLL REVEAL */
+const elements = document.querySelectorAll('.hidden');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+elements.forEach(el => observer.observe(el));
+
+
+  
+const music = document.getElementById("bg-music");
+let tocando = false;
+
+function toggleMusic() {
+  if (tocando) {
+    music.pause();
+  } else {
+    music.play();
+  }
+  tocando = !tocando;
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+<!--<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -267,4 +659,4 @@ window.addEventListener("DOMContentLoaded", aplicarTema);
 </script>
 
 </body>
-</html>
+</html>-->
