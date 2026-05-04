@@ -89,7 +89,85 @@ h1, h2 {
 .alert {
   background: #111;
   padding: 12px 18px;
-  border-left: 4px solid #0ea5e9;
+  border-l/* GRID */
+.album-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.album-card {
+  width: 200px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.album-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.album-card:hover {
+  transform: scale(1.05);
+}
+
+/* PLAYER */
+.player {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.hidden-player {
+  display: none;
+}
+
+/* SCROLL SNAP */
+.tracks-container {
+  flex: 1;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.album-tracks {
+  display: none;
+  flex-direction: column;
+}
+
+.album-tracks.active {
+  display: flex;
+}
+
+/* TRACK */
+.track {
+  scroll-snap-align: center;
+  padding: 40px 20px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+/* playing */
+.track.playing {
+  transform: scale(1.1);
+  color: #0ea5e9;
+}
+
+/* progress */
+.progress {
+  height: 5px;
+  background: #333;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  background: #0ea5e9;
+}eft: 4px solid #0ea5e9;
   border-radius: 8px;
   opacity: 0;
   transform: translateX(50px);
@@ -102,69 +180,7 @@ h1, h2 {
 }
 
 
-   /* container geral */
-.album-container {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 20px;
-}
-
-/* cada álbum */
-.album {
-  min-width: 300px;
-  background: rgba(0,0,0,0.6);
-  border-radius: 15px;
-  padding: 20px;
-  scroll-snap-align: center;
-}
-
-/* capa */
-.album img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-/* lista de músicas */
-.tracks {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-/* música */
-.track {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255,255,255,0.1);
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* hover */
-.track:hover {
-  transform: scale(1.03);
-  background: rgba(255,255,255,0.2);
-}
-
-/* botão curtir */
-.like {
-  background: none;
-  border: none;
-  color: #0ea5e9;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-/* estado curtido */
-.like.active {
-  color: red;
-}
+   
 </style>
 </head>
 
@@ -188,48 +204,64 @@ h1, h2 {
   </div>
 </section>
 
-<section id="albuns">
+<se<section id="albuns">
   <h2>Álbuns Marcantes</h2>
 
-  <div class="album-container">
+  <div class="album-grid">
 
     <!-- ÁLBUM -->
-    <div class="album">
-      <img src="thriller.jpg" alt="Thriller">
-
+    <div class="album-card" data-album="thriller">
+      <img src="thriller.jpg">
       <h3>Thriller</h3>
-
-      <div class="tracks">
-
-        <div class="track" data-alert="Play: Beat It">
-          <span>Beat It</span>
-          <button class="like">❤</button>
-        </div>
-
-        <div class="track" data-alert="Play: Billie Jean">
-          <span>Billie Jean</span>
-          <button class="like">❤</button>
-        </div>
-
-      </div>
     </div>
 
-    <!-- OUTRO ÁLBUM -->
-    <div class="album">
-      <img src="bad.jpg" alt="Bad">
-
+    <div class="album-card" data-album="bad">
+      <img src="bad.jpg">
       <h3>Bad</h3>
-
-      <div class="tracks">
-        <div class="track" data-alert="Play: Smooth Criminal">
-          <span>Smooth Criminal</span>
-          <button class="like">❤</button>
-        </div>
-      </div>
     </div>
 
   </div>
-</section>
+
+  <!-- PLAYER -->
+  <div id="player" class="player hidden-player">
+
+    <button class="btn close-player">Voltar</button>
+
+    <div class="tracks-container">
+
+      <!-- THRILLER -->
+      <div class="album-tracks" data-album="thriller">
+
+        <div class="track">
+          <span>Beat It</span>
+          <audio src="beat-it.mp3"></audio>
+          <div class="progress"><div class="bar"></div></div>
+        </div>
+
+        <div class="track">
+          <span>Billie Jean</span>
+          <audio src="billie-jean.mp3"></audio>
+          <div class="progress"><div class="bar"></div></div>
+        </div>
+
+      </div>
+
+      <!-- BAD -->
+      <div class="album-tracks" data-album="bad">
+
+        <div class="track">
+          <span>Smooth Criminal</span>
+          <audio src="smooth-criminal.mp3"></audio>
+          <div class="progress"><div class="bar"></div></div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>ction id="albuns">
+ 
 
 <section>
   <h2>Influência Global</h2>
@@ -282,22 +314,57 @@ document.addEventListener("click", e => {
 
   criarAlert(el.dataset.alert);
 
-  // botão voltar simples
-  if (el.textContent.includes("Voltar")) {
-    setTimeout(() => history.back(), 1500);
-  }
+
+
+/* ABRIR PLAYER */
+const player = document.getElementById("player");
+
+document.querySelectorAll(".album-card").forEach(card => {
+  card.addEventListener("click", () => {
+
+    const album = card.dataset.album;
+
+    player.classList.remove("hidden-player");
+
+    document.querySelectorAll(".album-tracks").forEach(a => {
+      a.classList.remove("active");
+    });
+
+    document.querySelector(`[data-album="${album}"].album-tracks`)
+      .classList.add("active");
+  });
 });
 
+/* FECHAR */
+document.querySelector(".close-player").onclick = () => {
+  player.classList.add("hidden-player");
 
-   // CURTIR
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("like")) {
-    e.stopPropagation();
-    e.target.classList.toggle("active");
-  }
+  document.querySelectorAll("audio").forEach(a => a.pause());
+};
+
+/* PLAY + PROGRESSO */
+document.querySelectorAll(".track").forEach(track => {
+
+  const audio = track.querySelector("audio");
+  const bar = track.querySelector(".bar");
+
+  track.addEventListener("click", () => {
+
+    // parar outros
+    document.querySelectorAll("audio").forEach(a => a.pause());
+    document.querySelectorAll(".track").forEach(t => t.classList.remove("playing"));
+
+    audio.play();
+    track.classList.add("playing");
+  });
+
+  audio.addEventListener("timeupdate", () => {
+    const progress = (audio.currentTime / audio.duration) * 100;
+    bar.style.width = progress + "%";
+  });
+
 });
 
 </script>
-
 </body>
 </html>
