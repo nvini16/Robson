@@ -294,86 +294,123 @@ h1, h2 {
   <p class="frase">I'm starting with the man in the mirror.</p>
 </section>
 
+<!-- =========================
+     SEÇÃO DE ÁLBUNS (VISÍVEL)
+========================= -->
 <section id="albuns">
+
   <h2>Álbuns Marcantes</h2>
 
+  <!-- GRID DE ÁLBUNS (CLIQUE) -->
   <div class="album-grid">
 
-    <!-- ALBUM -->
+    <!-- CARD DO ÁLBUM -->
+    <!-- Esse é o "gatilho" -->
     <div class="album-card" data-album="thriller">
       <img src="thriller.jpg" alt="Thriller">
       <h3>Thriller</h3>
     </div>
 
-    <div class="album-card" data-album="bad">
-      <img src="bad.jpg" alt="Bad">
-      <h3>Bad</h3>
-    </div>
-
   </div>
 </section>
 
-<!-- PLAYER GLOBAL -->
+
+<!-- =========================
+     PLAYER (FICA ESCONDIDO)
+========================= -->
 <div id="player" class="player hidden-player">
 
+  <!-- BOTÃO VOLTAR -->
   <button class="btn close-player" data-alert="Saindo do player...">
     Voltar
   </button>
 
-  <!-- título dinâmico -->
-  <h2 class="album-title"></h2>
-
+  <!-- CONTAINER DE ÁLBUNS -->
   <div class="tracks-container">
 
     <!-- =========================
-         THRILLER
+         ÁLBUM: THRILLER
+         ⚠ data-album TEM que ser igual ao card
     ========================= -->
     <div class="album-tracks" data-album="thriller">
 
+      <!-- CAPA + INFO -->
+      <div class="album-header">
+        <img src="thriller.jpg" class="album-cover" alt="Thriller">
+        <h2>Thriller</h2>
+        <p class="album-meta">1982 • 9 faixas</p>
+      </div>
+
+      <!-- =========================
+           TRACKS (MÚSICAS)
+           ⚠ cada track precisa de data-id único
+      ========================= -->
+
+      <div class="track" data-id="wanna-be-startin">
+        <span class="track-name">Wanna Be Startin' Somethin'</span>
+        <audio src="wanna.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
+        <button class="like">❤</button>
+      </div>
+
+      <div class="track" data-id="baby-be-mine">
+        <span class="track-name">Baby Be Mine</span>
+        <audio src="baby.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
+        <button class="like">❤</button>
+      </div>
+
+      <div class="track" data-id="the-girl-is-mine">
+        <span class="track-name">The Girl Is Mine</span>
+        <audio src="girl.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
+        <button class="like">❤</button>
+      </div>
+
+      <div class="track" data-id="thriller">
+        <span class="track-name">Thriller</span>
+        <audio src="thriller.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
+        <button class="like">❤</button>
+      </div>
+
       <div class="track" data-id="beat-it">
         <span class="track-name">Beat It</span>
-
         <audio src="beat-it.mp3"></audio>
-
-        <div class="progress">
-          <div class="bar"></div>
-        </div>
-
+        <div class="progress"><div class="bar"></div></div>
         <button class="like">❤</button>
       </div>
 
       <div class="track" data-id="billie-jean">
         <span class="track-name">Billie Jean</span>
-
         <audio src="billie-jean.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
+        <button class="like">❤</button>
+      </div>
 
-        <div class="progress">
-          <div class="bar"></div>
-        </div>
+      <div class="track" data-id="human-nature">
+        <span class="track-name">Human Nature</span>
+        <audio src="human.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
+        <button class="like">❤</button>
+      </div>
 
+      <div class="track" data-id="pyt">
+        <span class="track-name">P.Y.T. (Pretty Young Thing)</span>
+        <audio src="pyt.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
+        <button class="like">❤</button>
+      </div>
+
+      <div class="track" data-id="lady-in-my-life">
+        <span class="track-name">The Lady in My Life</span>
+        <audio src="lady.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
         <button class="like">❤</button>
       </div>
 
     </div>
-
-    <!-- =========================
-         BAD
-    ========================= -->
-    <div class="album-tracks" data-album="bad">
-
-      <div class="track" data-id="smooth-criminal">
-        <span class="track-name">Smooth Criminal</span>
-
-        <audio src="smooth-criminal.mp3"></audio>
-
-        <div class="progress">
-          <div class="bar"></div>
-        </div>
-
-        <button class="like">❤</button>
-      </div>
-
-    </div>
+    <!-- FIM DO ÁLBUM -->
 
   </div>
 </div>
