@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Michael Jackson</title>
+
+<style>
+
+/* =========================
+   BASE
+========================= */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  background: url("michael-bg.jpg") no-repeat center/cover;
+}
+
+/* overlay pra leitura */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: -1;
+}
+
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+/* =========================
+   FRASE
+========================= */
+
+.frase {
+  font-size: 1.5rem;
+  font-style: italic;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.box {
+  max-width: 800px;
+  margin: 20px auto;
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  background: #0ea5e9;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* =========================
+   ALERT
+========================= */
+
+#alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alert {
+  background: #111;
+  padding: 12px 18px;
+  border-left: 4px solid #0ea5e9;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: 0.3s;
+}
+
+.alert.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<section>
+  <h1>Michael Jackson</h1>
+</section>
+
+<section>
+  <h2>Frase Icônica</h2>
+  <p class="frase">
+    "I'm starting with the man in the mirror."
+  </p>
+</section>
+
+<section>
+  <h2>Estilo & Impacto Social</h2>
+  <div class="box">
+    Michael Jackson redefiniu a música pop, a dança e a forma como artistas se conectam com o mundo. Seus videoclipes viraram eventos culturais e sua presença influenciou gerações.
+  </div>
+</section>
+
+<section>
+  <h2>Álbuns Marcantes</h2>
+  <div class="box">
+    Thriller, Bad, Dangerous — obras que mudaram a indústria musical e estabeleceram recordes históricos.
+  </div>
+</section>
+
+<section>
+  <h2>Influência Global</h2>
+  <div class="box">
+    Sua música atravessou fronteiras, culturas e idiomas, sendo reconhecida no mundo inteiro.
+  </div>
+</section>
+
+<section>
+  <h2>Curiosidades</h2>
+  <div class="box">
+    - Primeiro artista negro a ter alta rotação na MTV  
+    - Moonwalk virou símbolo global  
+    - Show transmitido para milhões ao redor do mundo  
+  </div>
+</section>
+
+<section>
+  <button class="btn" data-alert="Voltando...">
+    Voltar
+  </button>
+</section>
+
+<script>
+
+/* ALERT SYSTEM */
+
+const urna = document.createElement("div");
+urna.id = "alert-container";
+document.body.appendChild(urna);
+
+function criarAlert(msg) {
+  const el = document.createElement("div");
+  el.className = "alert";
+  el.textContent = msg;
+
+  urna.appendChild(el);
+
+  setTimeout(() => el.classList.add("show"), 50);
+
+  setTimeout(() => {
+    el.classList.remove("show");
+    setTimeout(() => el.remove(), 300);
+  }, 2500);
+}
+
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-alert]");
+  if (!el) return;
+
+  criarAlert(el.dataset.alert);
+
+  // botão voltar simples
+  if (el.textContent.includes("Voltar")) {
+    setTimeout(() => history.back(), 1500);
+  }
+});
+
+</script>
+
+</body>
+</html>
