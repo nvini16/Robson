@@ -8,10 +8,44 @@
 
 <style>
 
-/* =========================
-   GRID ÁLBUNS
-======================== */
+/* BASE */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
 
+/* SEÇÕES */
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.frase {
+  font-style: italic;
+  font-size: 1.4rem;
+}
+
+.box {
+  max-width: 800px;
+  margin: auto;
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* BOTÃO */
+.btn {
+  padding: 10px 20px;
+  background: #0ea5e9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* GRID ÁLBUNS */
 .album-grid {
   display: flex;
   gap: 20px;
@@ -23,7 +57,6 @@
   width: 200px;
   cursor: pointer;
   transition: 0.3s;
-  text-align: center;
 }
 
 .album-card img {
@@ -35,10 +68,7 @@
   transform: scale(1.08);
 }
 
-/* =========================
-   PLAYER
-========================= */
-
+/* PLAYER */
 .player {
   position: fixed;
   inset: 0;
@@ -53,16 +83,7 @@
   display: none;
 }
 
-/* botão voltar */
-.close-player {
-  align-self: flex-start;
-  margin-bottom: 10px;
-}
-
-/* =========================
-   SCROLL SNAP
-========================= */
-
+/* SCROLL */
 .tracks-container {
   flex: 1;
   overflow-y: auto;
@@ -71,57 +92,42 @@
 
 .album-tracks {
   display: none;
-  flex-direction: column;
 }
 
 .album-tracks.active {
   display: flex;
+  flex-direction: column;
 }
 
-/* =========================
-   TRACK
-========================= */
-
+/* TRACK */
 .track {
   scroll-snap-align: center;
   padding: 40px 20px;
   text-align: center;
   transition: 0.3s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
 }
 
-/* efeito tocando */
 .track.playing {
   transform: scale(1.1);
   color: #0ea5e9;
 }
 
-/* =========================
-   PROGRESSO
-========================= */
-
+/* PROGRESSO */
 .progress {
   width: 80%;
   height: 6px;
   background: #333;
+  margin: 10px auto;
   border-radius: 10px;
-  overflow: hidden;
 }
 
 .bar {
   height: 100%;
   width: 0%;
   background: #0ea5e9;
-  transition: width 0.2s linear;
 }
 
-/* =========================
-   LIKE BUTTON
-========================= */
-
+/* LIKE */
 .like {
   background: none;
   border: 2px solid #0ea5e9;
@@ -129,36 +135,37 @@
   padding: 5px 10px;
   border-radius: 20px;
   cursor: pointer;
-  transition: 0.3s;
-  font-size: 0.9rem;
 }
 
-/* hover */
-.like:hover {
-  background: #0ea5e9;
-  color: #fff;
-}
-
-/* ativo */
 .like.active {
   background: red;
   border-color: red;
   color: #fff;
-  transform: scale(1.1);
 }
 
-/* =========================
-   RESPONSIVO
-========================= */
-
-@media (max-width: 600px) {
-  .track {
-    padding: 30px 10px;
-  }
+/* ALERT */
+#alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
 
+.alert {
+  background: #111;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-left: 4px solid #0ea5e9;
+  border-radius: 5px;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: 0.3s;
+}
 
-   
+.alert.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 </style>
 </head>
 
@@ -170,24 +177,14 @@
 
 <section>
   <h2>Frase Icônica</h2>
-  <p class="frase">
-    "I'm starting with the man in the mirror."
-  </p>
+  <p class="frase">I'm starting with the man in the mirror.</p>
 </section>
 
 <section>
-  <h2>Estilo & Impacto Social</h2>
-  <div class="box">
-    Michael Jackson redefiniu a música pop, a dança e a forma como artistas se conectam com o mundo. Seus videoclipes viraram eventos culturais e sua presença influenciou gerações.
-  </div>
-</section>
-
-<se<section id="albuns">
   <h2>Álbuns Marcantes</h2>
 
   <div class="album-grid">
 
-    <!-- ÁLBUM -->
     <div class="album-card" data-album="thriller">
       <img src="thriller.jpg">
       <h3>Thriller</h3>
@@ -199,74 +196,53 @@
     </div>
 
   </div>
+</section>
 
-  <!-- PLAYER -->
-  <div id="player" class="player hidden-player">
+<!-- PLAYER -->
+<div id="player" class="player hidden-player">
 
-    <button class="btn close-player">Voltar</button>
+  <button class="btn close-player">Voltar</button>
 
-    <div class="tracks-container">
+  <div class="tracks-container">
 
-      <!-- THRILLER -->
-      <div class="album-tracks" data-album="thriller">
+    <!-- THRILLER -->
+    <div class="album-tracks" data-album="thriller">
 
-        <div class="track">
-          <span>Beat It</span>
-          <audio src="beat-it.mp3"></audio>
-          <div class="progress"><div class="bar"></div></div>
-        </div>
-
-        <div class="track">
-          <span>Billie Jean</span>
-          <audio src="billie-jean.mp3"></audio>
-          <div class="progress"><div class="bar"></div></div>
-        </div>
-
+      <div class="track" data-id="beat-it">
+        <span>Beat It</span>
+        <audio src="beat-it.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
+        <button class="like">❤</button>
       </div>
 
-      <!-- BAD -->
-      <div class="album-tracks" data-album="bad">
+      <div class="track" data-id="billie-jean">
+        <span>Billie Jean</span>
+        <audio src="billie-jean.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
+        <button class="like">❤</button>
+      </div>
 
-        <div class="track">
-          <span>Smooth Criminal</span>
-          <audio src="smooth-criminal.mp3"></audio>
-          <div class="progress"><div class="bar"></div></div>
-        </div>
+    </div>
 
+    <!-- BAD -->
+    <div class="album-tracks" data-album="bad">
+
+      <div class="track" data-id="smooth">
+        <span>Smooth Criminal</span>
+        <audio src="smooth-criminal.mp3"></audio>
+        <div class="progress"><div class="bar"></div></div>
+        <button class="like">❤</button>
       </div>
 
     </div>
 
   </div>
-</section>ction id="albuns">
- 
 
-<section>
-  <h2>Influência Global</h2>
-  <div class="box">
-    Sua música atravessou fronteiras, culturas e idiomas, sendo reconhecida no mundo inteiro.
-  </div>
-</section>
-
-<section>
-  <h2>Curiosidades</h2>
-  <div class="box">
-    - Primeiro artista negro a ter alta rotação na MTV  
-    - Moonwalk virou símbolo global  
-    - Show transmitido para milhões ao redor do mundo  
-  </div>
-</section>
-
-<section>
-  <button class="btn" data-alert="Voltando...">
-    Voltar
-  </button>
-</section>
+</div>
 
 <script>
 
-/* ALERT SYSTEM */
-
+/* ALERT */
 const urna = document.createElement("div");
 urna.id = "alert-container";
 document.body.appendChild(urna);
@@ -275,7 +251,6 @@ function criarAlert(msg) {
   const el = document.createElement("div");
   el.className = "alert";
   el.textContent = msg;
-
   urna.appendChild(el);
 
   setTimeout(() => el.classList.add("show"), 50);
@@ -283,76 +258,78 @@ function criarAlert(msg) {
   setTimeout(() => {
     el.classList.remove("show");
     setTimeout(() => el.remove(), 300);
-  }, 2500);
+  }, 2000);
 }
 
-document.addEventListener("click", e => {
-  const el = e.target.closest("[data-alert]");
-  if (!el) return;
-
-  criarAlert(el.dataset.alert);
-
-
-
-/* ABRIR PLAYER */
+/* PLAYER */
 const player = document.getElementById("player");
 
 document.querySelectorAll(".album-card").forEach(card => {
-  card.addEventListener("click", () => {
-
+  card.onclick = () => {
     const album = card.dataset.album;
 
     player.classList.remove("hidden-player");
 
-    document.querySelectorAll(".album-tracks").forEach(a => {
-      a.classList.remove("active");
-    });
+    document.querySelectorAll(".album-tracks")
+      .forEach(a => a.classList.remove("active"));
 
-    document.querySelector(`[data-album="${album}"].album-tracks`)
+    document.querySelector(`[data-album="${album}"]`)
       .classList.add("active");
-  });
+  };
 });
 
 /* FECHAR */
 document.querySelector(".close-player").onclick = () => {
   player.classList.add("hidden-player");
-
   document.querySelectorAll("audio").forEach(a => a.pause());
 };
 
-/* PLAY + PROGRESSO */
+/* PLAY */
 document.querySelectorAll(".track").forEach(track => {
 
   const audio = track.querySelector("audio");
   const bar = track.querySelector(".bar");
 
-  track.addEventListener("click", () => {
+  track.onclick = () => {
 
-    // parar outros
     document.querySelectorAll("audio").forEach(a => a.pause());
     document.querySelectorAll(".track").forEach(t => t.classList.remove("playing"));
 
     audio.play();
     track.classList.add("playing");
-  });
+  };
 
-  audio.addEventListener("timeupdate", () => {
-    const progress = (audio.currentTime / audio.duration) * 100;
-    bar.style.width = progress + "%";
-  });
-
-   // LIKE
-document.addEventListener("click", e => {
-
-  if (e.target.classList.contains("like")) {
-    e.stopPropagation(); // impede de tocar música junto
-    e.target.classList.toggle("active");
-  }
+  audio.ontimeupdate = () => {
+    const p = (audio.currentTime / audio.duration) * 100;
+    bar.style.width = p + "%";
+  };
 
 });
+
+/* LIKE + LOCAL STORAGE */
+const likes = JSON.parse(localStorage.getItem("likes")) || {};
+
+document.querySelectorAll(".track").forEach(track => {
+
+  const id = track.dataset.id;
+  const btn = track.querySelector(".like");
+
+  if (likes[id]) btn.classList.add("active");
+
+  btn.onclick = (e) => {
+    e.stopPropagation();
+
+    btn.classList.toggle("active");
+    likes[id] = btn.classList.contains("active");
+
+    localStorage.setItem("likes", JSON.stringify(likes));
+
+    criarAlert(likes[id] ? "Curtido ❤️" : "Descurtido 💔");
+  };
 
 });
 
 </script>
+
 </body>
 </html>
