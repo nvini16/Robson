@@ -1,4 +1,4 @@
-Esse é o código: <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -179,6 +179,231 @@ h2 {
   border-color: var(--accent);
 }
 
+/* =========================
+   VARIÁVEIS DE TEMA
+========================= */
+
+:root {
+  --bg: #000;
+  --text: #fff;
+  --card: #111;
+  --accent: #c8102e;
+
+  --section-bg: linear-gradient(135deg, #000, #1a1a1a);
+  --overlay: rgba(0,0,0,0.5);
+}
+
+body.light {
+  --bg: #f5f5f5;
+  --text: #111;
+  --card: #fff;
+  --accent: #0ea5e9;
+
+  --section-bg: linear-gradient(135deg, #e0f2fe, #ffffff);
+  --overlay: rgba(255,255,255,0.6);
+}
+
+/* =========================
+   RESET + BASE
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.4s;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+  background: var(--card);
+  padding: 20px;
+  text-align: center;
+  border-bottom: 3px solid var(--accent);
+}
+
+/* =========================
+   NAV
+========================= */
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+/* =========================
+   FRASE
+========================= */
+
+.frase {
+  font-size: 1.4rem;
+  font-style: italic;
+  background: var(--card);
+  padding: 20px;
+  border-left: 5px solid var(--accent);
+  border-radius: 10px;
+}
+
+/* =========================
+   FOTO
+========================= */
+
+.foto-box {
+  margin-top: 20px;
+}
+
+.foto-box img {
+  width: 200px;
+  border-radius: 15px;
+  border: 3px solid var(--accent);
+}
+
+.foto-box img:hover {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+/* =========================
+   CORINTHIANS SECTION
+========================= */
+
+.corinthians {
+  background: var(--section-bg);
+  border-top: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+.btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* =========================
+   CURIOSIDADE
+========================= */
+
+#curiosidade p {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 10px;
+  line-height: 1.6;
+}
+
+/* =========================
+   ANIMAÇÃO
+========================= */
+
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   ESCUDO
+========================= */
+
+.escudo {
+  width: 120px;
+  margin: 20px auto;
+  border: 3px solid var(--accent);
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.escudo:hover {
+  transform: scale(1.1) rotate(3deg);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.ref-box {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 15px;
+  width: 250px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  border-color: var(--accent);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+body.light .card:hover {
+  box-shadow: 0 15px 40px rgba(14,165,233,0.3);
+}
+
 .card img {
   width: 100%;
   border-radius: 10px;
@@ -194,43 +419,57 @@ h2 {
   opacity: 0.8;
 }
 
-  /* imagem de fundo do header*/
-  .bg-box1 {
+/* =========================
+   BACKGROUNDS
+========================= */
+
+.bg-box1,
+.bg-box2 {
   width: 100%;
   height: 300px;
+  background-size: cover;
+  background-position: center;
+}
 
-  background: 
-    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+/* overlay dinâmico */
+.bg-box1 {
+  background:
+    linear-gradient(var(--overlay), var(--overlay)),
     url("papeis-de-parede-do-corinthians-uma-paixao-alvinegra-na-decoracao.jpg");
+}
 
-  background-size: cover;
-  background-position: center;
-  }
-
-  /* imagem de fundo footer */
-  .bg-box2 {
-  width: 100%;
-  height: 300px;
-
-  background: 
-    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+.bg-box2 {
+  background:
+    linear-gradient(var(--overlay), var(--overlay)),
     url("download (2).jpeg");
+}
 
-  background-size: cover;
-  background-position: center;
-  }
+/* =========================
+   MENU INTERATIVO
+========================= */
 
-  /* menu interativo */
-
-  
 .menuinterative {
-    position: relative;
-    padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 60px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 15px 35px rgba( 0, 0, 0, 0.5);
-    border: 0.5px solid #ccc;
+  position: relative;
+  padding: 15px 20px;
+  border-radius: 60px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+}
+
+body.light .menuinterative {
+  background: rgba(0,0,0,0.05);
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 600px) {
+  .foto-box img {
+    width: 150px;
+  }
 }
 </style>
 </head>
@@ -239,11 +478,13 @@ h2 {
 
 <header class="bg-box1">
   <h1>RJ</h1>
+
   <nav>
-    <button onclick="toggleMusic()" 
-      class="btn">Música</button>
+    <button onclick="toggleMusic()" class="btn">Música</button>
   </nav>
+
   <br>
+
   <nav class="menuinterative">
     <a href="#frase">Frase</a>
     <a href="#sobre">Sobre</a>
@@ -253,35 +494,56 @@ h2 {
   </nav>
 </header>
 
+<!-- =========================
+     SOBRE
+========================= -->
+
 <section id="sobre" class="hidden">
   <div class="container">
     <h2>Sobre o Robson</h2>
 
     <div class="foto-box">
-      <!-- TROQUE ESSE LINK PELA FOTO REAL NATHAN  -->
-
-      
-      <img sc="https://via.placeholder.com/200" at="Foto do Robson">
+      <img 
+        src="dark-profile.jpg"
+        data-dark="dark-profile.jpg"
+        data-light="light-profile.jpg"
+        alt="Foto do Robson"
+      >
     </div>
 
   </div>
 </section>
 
+<!-- =========================
+     FRASE
+========================= -->
+
 <section id="frase" class="hidden">
   <div class="container">
     <h2>Frase Marcante</h2>
+
     <p class="frase">
       "Não existe sorte ou azar. Se alguma coisa acontece é porque tinha que acontecer."
     </p>
+
   </div>
 </section>
+
+<!-- =========================
+     TIME
+========================= -->
 
 <section id="time" class="corinthians hidden">
   <div class="container">
     <h2>Time do Coração</h2>
 
-    <!-- ESCUDO SIMPLES -->
-    <img src="download.jpeg" class="escudo" alt="Escudo do Corinthians">
+    <img 
+      class="escudo"
+      src="escudo-dark.png"
+      data-dark="escudo-dark.png"
+      data-light="escudo-light.png"
+      alt="Escudo do Corinthians"
+    >
 
     <p style="color: var(--accent); font-weight: bold;">
       Sport Club Corinthians Paulista
@@ -291,102 +553,158 @@ h2 {
   </div>
 </section>
 
+<!-- =========================
+     REFERÊNCIAS
+========================= -->
 
-  <section id="referencias" class="hidden">
+<section id="referencias" class="hidden">
   <div class="container">
     <h2>Referências</h2>
 
     <div class="ref-box">
 
       <div class="card">
-        <img src="ddf968aa7c3922aa9076f41643ed5239.jpg" alt="Neymar">
+        <img 
+          src="neymar-dark.jpg"
+          data-dark="neymar-dark.jpg"
+          data-light="neymar-light.jpg"
+          alt="Neymar"
+        >
         <h3>Neymar</h3>
-        <p></p>
       </div>
 
       <div class="card">
-        <img src="2507b2f758ef71c4edd806fba4208387.jpg" alt="Messi">
+        <img 
+          src="messi-dark.jpg"
+          data-dark="messi-dark.jpg"
+          data-light="messi-light.jpg"
+          alt="Messi"
+        >
         <h3>Messi</h3>
-        <p></p>
       </div>
 
       <div class="card">
-        <img src="images.jpeg" alt="CHAMA – (Bem 10)">
-        <h3>CHAMA – (Bem 10)</h3>
-        <p></p>
+        <img 
+          src="chama-dark.jpg"
+          data-dark="chama-dark.jpg"
+          data-light="chama-light.jpg"
+          alt="Chama (Ben 10)"
+        >
+        <h3>CHAMA – (Ben 10)</h3>
       </div>
 
       <div class="card">
-        <img src="character-analysis-michael-kaiser-v0-4jd6763vto2e1.jpg" alt="KAISER">
-          <h3>KAISER</h3>
-          <p></p>
+        <img 
+          src="kaiser-dark.jpg"
+          data-dark="kaiser-dark.jpg"
+          data-light="kaiser-light.jpg"
+          alt="Kaiser"
+        >
+        <h3>KAISER</h3>
       </div>
 
       <div class="card">
-        <img src="165858375862dbface6e3b0_1658583758_3x2_md.jpg" alt="Power Rangers">
+        <img 
+          src="rangers-dark.jpg"
+          data-dark="rangers-dark.jpg"
+          data-light="rangers-light.jpg"
+          alt="Power Rangers"
+        >
         <h3>Power Rangers</h3>
-        <p></p>
       </div>
 
       <div class="card">
-        <img src="20241216-ovicio-shadow-sonic-3-555x555.webp" alt="Sonic">
+        <img 
+          src="sonic-dark.jpg"
+          data-dark="sonic-dark.jpg"
+          data-light="sonic-light.jpg"
+          alt="Sonic"
+        >
         <h3>Sonic</h3>
-        <p></p>
       </div>
-
-      
 
     </div>
   </div>
+</section>
 
-    
-  </section>
+<!-- =========================
+     ÁUDIO
+========================= -->
 
-  
-  <audio id="bg-music" loop>
+<audio id="bg-music" loop>
   <source src="puma.m4a" type="audio/mp4">
 </audio>
 
-  <footer class="bg-box2">
-    
-  </footer>
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="bg-box2"></footer>
+
+<!-- =========================
+     SCRIPT
+========================= -->
 
 <script>
-function toggleTema() {
-  document.body.classList.toggle("light");
+
+/* =========================
+   TEMA + IMAGENS
+========================= */
+
+function aplicarTema() {
+  const isLight = document.body.classList.contains("light");
+
+  document.querySelectorAll("img").forEach(img => {
+    if (isLight && img.dataset.light) {
+      img.src = img.dataset.light;
+    } else if (!isLight && img.dataset.dark) {
+      img.src = img.dataset.dark;
+    }
+  });
 }
 
-/* SCROLL REVEAL */
-const elements = document.querySelectorAll('.hidden');
+function toggleTema() {
+  document.body.classList.toggle("light");
+  aplicarTema();
+}
+
+/* =========================
+   SCROLL REVEAL
+========================= */
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('show');
+      entry.target.classList.add("show");
     }
   });
 });
 
-elements.forEach(el => observer.observe(el));
+document.querySelectorAll(".hidden")
+  .forEach(el => observer.observe(el));
 
+/* =========================
+   MÚSICA
+========================= */
 
-  
 const music = document.getElementById("bg-music");
 let tocando = false;
 
 function toggleMusic() {
-  if (tocando) {
-    music.pause();
-  } else {
-    music.play();
-  }
+  tocando ? music.pause() : music.play();
   tocando = !tocando;
 }
+
+/* =========================
+   INIT
+========================= */
+
+window.addEventListener("DOMContentLoaded", aplicarTema);
+
 </script>
 
 </body>
 </html>
-
 
 
 
