@@ -295,3 +295,11 @@ body.light .menuinterative {
   opacity: 1;
   transform: translateX(0);
 }
+
+/* MICHAEL JACKSON PAEEEEEEE!! */
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
