@@ -170,7 +170,60 @@ function toggleMusic() {
   tocando = !tocando;
 }
 
-</script>
+/* =========================
+   URNA DE ALERTS
+========================= */
+
+// cria a urna automaticamente
+const urna = document.createElement("div");
+urna.id = "alert-container";
+document.body.appendChild(urna);
+
+// função de criar alerta
+function criarAlert(mensagem) {
+  const alert = document.createElement("div");
+  alert.className = "alert";
+  alert.textContent = mensagem;
+
+  urna.appendChild(alert);
+
+  setTimeout(() => {
+    alert.classList.add("show");
+  }, 50);
+
+  setTimeout(() => {
+    alert.classList.remove("show");
+    setTimeout(() => alert.remove(), 300);
+  }, 2500);
+}
+
+/* =========================
+   DISPARO AUTOMÁTICO
+========================= */
+
+document.querySelectorAll("[data-alert]").forEach(el => {
+  el.addEventListener("click", e => {
+
+    const msg = el.getAttribute("data-alert");
+
+    // se for link, segura navegação
+    if (el.tagName === "A" && el.href) {
+      e.preventDefault();
+
+      criarAlert(msg);
+
+      setTimeout(() => {
+        window.location.href = el.href;
+      }, 2000);
+
+    } else {
+      criarAlert(msg);
+    }
+
+  });
+});
+
+ </script>
 
 </body>
 </html>
