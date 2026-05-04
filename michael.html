@@ -379,7 +379,10 @@ h1, h2 {
 </div>
 <script>
 
-/* ALERT */
+/* =========================
+   ALERT SYSTEM
+========================= */
+
 const urna = document.createElement("div");
 urna.id = "alert-container";
 document.body.appendChild(urna);
@@ -388,6 +391,7 @@ function criarAlert(msg) {
   const el = document.createElement("div");
   el.className = "alert";
   el.textContent = msg;
+
   urna.appendChild(el);
 
   setTimeout(() => el.classList.add("show"), 50);
@@ -398,52 +402,107 @@ function criarAlert(msg) {
   }, 2000);
 }
 
-/* PLAYER */
+/* ALERT POR DATA-ATTRIBUTE */
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-alert]");
+  if (!el) return;
+
+  criarAlert(el.dataset.alert);
+});
+
+
+/* =========================
+   PLAYER
+========================= */
+
 const player = document.getElementById("player");
+const albumTitle = document.querySelector(".album-title");
 
 document.querySelectorAll(".album-card").forEach(card => {
-  card.onclick = () => {
+
+  card.addEventListener("click", () => {
+
     const album = card.dataset.album;
 
     player.classList.remove("hidden-player");
 
+    /* limpa estado */
     document.querySelectorAll(".album-tracks")
       .forEach(a => a.classList.remove("active"));
 
-    document.querySelector(`[data-album="${album}"]`)
-      .classList.add("active");
-  };
+    /* ativa álbum */
+    const alvo = document.querySelector(`.album-tracks[data-album="${album}"]`);
+    if (alvo) alvo.classList.add("active");
+
+    /* título dinâmico */
+    if (albumTitle) {
+      albumTitle.textContent = album.replace("-", " ").toUpperCase();
+    }
+
+  });
+
 });
 
-/* FECHAR */
-document.querySelector(".close-player").onclick = () => {
-  player.classList.add("hidden-player");
-  document.querySelectorAll("audio").forEach(a => a.pause());
-};
 
-/* PLAY */
+/* =========================
+   FECHAR PLAYER
+========================= */
+
+document.querySelector(".close-player").addEventListener("click", () => {
+
+  player.classList.add("hidden-player");
+
+  /* para tudo */
+  document.querySelectorAll("audio").forEach(a => a.pause());
+
+  document.querySelectorAll(".track")
+    .forEach(t => t.classList.remove("playing"));
+
+});
+
+
+/* =========================
+   PLAY + PROGRESSO + TOGGLE
+========================= */
+
 document.querySelectorAll(".track").forEach(track => {
 
   const audio = track.querySelector("audio");
   const bar = track.querySelector(".bar");
 
-  track.onclick = () => {
+  track.addEventListener("click", () => {
 
+    /* toggle pause */
+    if (!audio.paused) {
+      audio.pause();
+      track.classList.remove("playing");
+      return;
+    }
+
+    /* parar outros */
     document.querySelectorAll("audio").forEach(a => a.pause());
     document.querySelectorAll(".track").forEach(t => t.classList.remove("playing"));
 
     audio.play();
     track.classList.add("playing");
-  };
 
-  audio.ontimeupdate = () => {
+  });
+
+  /* progresso */
+  audio.addEventListener("timeupdate", () => {
+    if (!audio.duration) return;
+
     const p = (audio.currentTime / audio.duration) * 100;
     bar.style.width = p + "%";
-  };
+  });
 
 });
 
-/* LIKE + LOCAL STORAGE */
+
+/* =========================
+   LIKE + LOCAL STORAGE
+========================= */
+
 const likes = JSON.parse(localStorage.getItem("likes")) || {};
 
 document.querySelectorAll(".track").forEach(track => {
@@ -451,18 +510,24 @@ document.querySelectorAll(".track").forEach(track => {
   const id = track.dataset.id;
   const btn = track.querySelector(".like");
 
-  if (likes[id]) btn.classList.add("active");
+  /* estado inicial */
+  if (likes[id]) {
+    btn.classList.add("active");
+  }
 
-  btn.onclick = (e) => {
+  btn.addEventListener("click", (e) => {
+
     e.stopPropagation();
 
     btn.classList.toggle("active");
+
     likes[id] = btn.classList.contains("active");
 
     localStorage.setItem("likes", JSON.stringify(likes));
 
-    criarAlert(likes[id] ? "Curtido ❤️" : "Descurtido 💔");
-  };
+    criarAlert(likes[id] ? "Curtido ❤️" : "Removido 💔");
+
+  });
 
 });
 
