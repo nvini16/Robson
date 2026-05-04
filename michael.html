@@ -101,6 +101,70 @@ h1, h2 {
   transform: translateX(0);
 }
 
+
+   /* container geral */
+.album-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 20px;
+}
+
+/* cada álbum */
+.album {
+  min-width: 300px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 15px;
+  padding: 20px;
+  scroll-snap-align: center;
+}
+
+/* capa */
+.album img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* lista de músicas */
+.tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* música */
+.track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* hover */
+.track:hover {
+  transform: scale(1.03);
+  background: rgba(255,255,255,0.2);
+}
+
+/* botão curtir */
+.like {
+  background: none;
+  border: none;
+  color: #0ea5e9;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* estado curtido */
+.like.active {
+  color: red;
+}
 </style>
 </head>
 
@@ -124,10 +188,46 @@ h1, h2 {
   </div>
 </section>
 
-<section>
+<section id="albuns">
   <h2>Álbuns Marcantes</h2>
-  <div class="box">
-    Thriller, Bad, Dangerous — obras que mudaram a indústria musical e estabeleceram recordes históricos.
+
+  <div class="album-container">
+
+    <!-- ÁLBUM -->
+    <div class="album">
+      <img src="thriller.jpg" alt="Thriller">
+
+      <h3>Thriller</h3>
+
+      <div class="tracks">
+
+        <div class="track" data-alert="Play: Beat It">
+          <span>Beat It</span>
+          <button class="like">❤</button>
+        </div>
+
+        <div class="track" data-alert="Play: Billie Jean">
+          <span>Billie Jean</span>
+          <button class="like">❤</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- OUTRO ÁLBUM -->
+    <div class="album">
+      <img src="bad.jpg" alt="Bad">
+
+      <h3>Bad</h3>
+
+      <div class="tracks">
+        <div class="track" data-alert="Play: Smooth Criminal">
+          <span>Smooth Criminal</span>
+          <button class="like">❤</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -185,6 +285,15 @@ document.addEventListener("click", e => {
   // botão voltar simples
   if (el.textContent.includes("Voltar")) {
     setTimeout(() => history.back(), 1500);
+  }
+});
+
+
+   // CURTIR
+document.addEventListener("click", e => {
+  if (e.target.classList.contains("like")) {
+    e.stopPropagation();
+    e.target.classList.toggle("active");
   }
 });
 
