@@ -8,9 +8,9 @@
 
 <style>
 
-/* =========================
+/* 
    BASE
-========================= */
+ */
 
 body {
   margin: 0;
@@ -26,9 +26,9 @@ body {
   background-attachment: fixed;
 }
 
-/* =========================
+/* 
    SEÇÕES
-========================= */
+ */
 
 section {
   padding: 60px 20px;
@@ -54,9 +54,9 @@ h1, h2 {
   backdrop-filter: blur(10px);
 }
 
-/* =========================
+/* 
    BOTÕES
-========================= */
+ */
 
 .btn {
   padding: 10px 20px;
@@ -73,9 +73,9 @@ h1, h2 {
   background: #0284c7;
 }
 
-/* =========================
+/* 
    GRID ÁLBUNS
-========================= */
+ */
 
 .album-grid {
   display: flex;
@@ -120,9 +120,9 @@ h1, h2 {
   opacity: 1;
 }
 
-/* =========================
+/* 
    PLAYER
-========================= */
+ */
 
 .player {
   position: fixed;
@@ -143,9 +143,9 @@ h1, h2 {
   margin-bottom: 10px;
 }
 
-/* =========================
+/* 
    SCROLL SNAP
-========================= */
+ */
 
 .tracks-container {
   flex: 1;
@@ -162,9 +162,9 @@ h1, h2 {
   flex-direction: column;
 }
 
-/* =========================
+/* 
    TRACK
-========================= */
+ */
 
 .track {
   scroll-snap-align: center;
@@ -189,9 +189,9 @@ h1, h2 {
   opacity: 0.7;
 }
 
-/* =========================
+/* 
    PROGRESSO
-========================= */
+ */
 
 .progress {
   width: 80%;
@@ -208,9 +208,9 @@ h1, h2 {
   transition: width 0.2s linear;
 }
 
-/* =========================
-   LIKE
-========================= */
+/* 
+   curtir o bagulho 
+ */
 
 .like {
   background: none;
@@ -234,9 +234,9 @@ h1, h2 {
   transform: scale(1.1);
 }
 
-/* =========================
+/* 
    ALERT
-========================= */
+ */
 
 #alert-container {
   position: fixed;
@@ -261,9 +261,7 @@ h1, h2 {
   transform: translateX(0);
 }
 
-/* =========================
-   RESPONSIVO
-========================= */
+/*RESPONSIVO */
 
 @media (max-width: 600px) {
 
@@ -291,20 +289,28 @@ h1, h2 {
 
 <section>
   <h2>Frase Icônica</h2>
-  <p class="frase">I'm starting with the man in the mirror.</p>
+  <p class="frase" 
+   data-pt="Não existe sorte ou azar. Se alguma coisa acontece é porque tinha que acontecer."
+   data-en="There is no luck or bad luck. If something happens, it was meant to happen.">
+
+  There is no luck or bad luck. If something happens, it was meant to happen.
+
+</p>
+
+<button class="btn traduzir-btn">
+  Traduzir
+</button>
 </section>
 
-<!-- =========================
-     SEÇÃO DE ÁLBUNS (VISÍVEL)
-========================= -->
+<!--SEÇÃO DE ÁLBUNS -->
 <section id="albuns">
 
   <h2>Álbuns Marcantes</h2>
 
-  <!-- GRID DE ÁLBUNS (CLIQUE) -->
+  <!--GRID DE ÁLBUNS-->
   <div class="album-grid">
 
-    <!-- CARD DO ÁLBUM -->
+    <!--CARD DO ÁLBUm-->
     <!-- Esse é o "gatilho" -->
     <div class="album-card" data-album="thriller">
       <img src="images (5).jpeg" alt="Thriller">
@@ -327,9 +333,9 @@ h1, h2 {
 </section>
 
 
-<!-- =========================
-     PLAYER (FICA ESCONDIDO)
-========================= -->
+<!-- 
+     PLAYER escondidinho!!
+ -->
 <div id="player" class="player hidden-player">
 
   <!-- BOTÃO VOLTAR -->
@@ -340,10 +346,10 @@ h1, h2 {
   <!-- CONTAINER DE ÁLBUNS -->
   <div class="tracks-container">
 
-    <!-- =========================
+    <!-- 
          ÁLBUM: THRILLER
-         ⚠ data-album TEM que ser igual ao card
-    ========================= -->
+         data-album TEM que ser igual ao card!!!!!¡!!!!!!!
+     -->
     <div class="album-tracks" data-album="thriller">
 
       <!-- CAPA + INFO -->
@@ -353,10 +359,10 @@ h1, h2 {
         <p class="album-meta">1982 • 9 faixas</p>
       </div>
 
-      <!-- =========================
+      <!-- 
            TRACKS (MÚSICAS)
-           ⚠ cada track precisa de data-id único
-      ========================= -->
+            cada track precisa de data-id único!!!!!!!!!!!!!!!
+       -->
 
       <div class="track" data-id="wanna-be-startin">
         <span class="track-name">Wanna Be Startin' Somethin'</span>
@@ -538,9 +544,9 @@ h1, h2 {
 </div>
 <script>
 
-/* =========================
+/* 
    ALERT SYSTEM
-========================= */
+ */
 
 const urna = document.createElement("div");
 urna.id = "alert-container";
@@ -570,9 +576,9 @@ document.addEventListener("click", e => {
 });
 
 
-/* =========================
+/* 
    PLAYER
-========================= */
+ */
 
 const player = document.getElementById("player");
 const albumTitle = document.querySelector(".album-title");
@@ -603,9 +609,9 @@ document.querySelectorAll(".album-card").forEach(card => {
 });
 
 
-/* =========================
+/* 
    FECHAR PLAYER
-========================= */
+ */
 
 document.querySelector(".close-player").addEventListener("click", () => {
 
@@ -620,9 +626,9 @@ document.querySelector(".close-player").addEventListener("click", () => {
 });
 
 
-/* =========================
+/* 
    PLAY + PROGRESSO + TOGGLE
-========================= */
+ */
 
 document.querySelectorAll(".track").forEach(track => {
 
@@ -658,9 +664,9 @@ document.querySelectorAll(".track").forEach(track => {
 });
 
 
-/* =========================
+/* 
    LIKE + LOCAL STORAGE
-========================= */
+ */
 
 const likes = JSON.parse(localStorage.getItem("likes")) || {};
 
