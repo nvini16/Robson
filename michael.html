@@ -545,11 +545,12 @@ h1, h2 {
 
   </div>
 </div>
+
 <script>
 
-/* 
+/* =========================
    ALERT SYSTEM
- */
+========================= */
 
 const urna = document.createElement("div");
 urna.id = "alert-container";
@@ -570,159 +571,152 @@ function criarAlert(msg) {
   }, 2000);
 }
 
-/* ALERT POR DATA-ATTRIBUTE */
-document.addEventListener("click", e => {
-  const el = e.target.closest("[data-alert]");
-  if (!el) return;
+/* =========================
+   EVENT DELEGATION (BASE)
+========================= */
 
-  criarAlert(el.dataset.alert);
-});
+document.addEventListener("click", (e) => {
 
+  /* ALERT */
+  const alertEl = e.target.closest("[data-alert]");
+  if (alertEl) {
+    criarAlert(alertEl.dataset.alert);
+  }
 
-/* 
-   PLAYER
- */
-
-const player = document.getElementById("player");
-const albumTitle = document.querySelector(".album-title");
-
-document.querySelectorAll(".album-card").forEach(card => {
-
-  card.addEventListener("click", () => {
+  /* =========================
+     ABRIR PLAYER
+  ========================= */
+  const card = e.target.closest(".album-card");
+  if (card) {
 
     const album = card.dataset.album;
+    const player = document.getElementById("player");
 
     player.classList.remove("hidden-player");
 
-    /* limpa estado */
     document.querySelectorAll(".album-tracks")
       .forEach(a => a.classList.remove("active"));
 
-    /* ativa álbum */
     const alvo = document.querySelector(`.album-tracks[data-album="${album}"]`);
     if (alvo) alvo.classList.add("active");
 
-    /* título dinâmico */
+    const albumTitle = document.querySelector(".album-title");
     if (albumTitle) {
-      albumTitle.textContent = album.replace("-", " ").toUpperCase();
+      albumTitle.textContent = album.replace(/-/g, " ").toUpperCase();
     }
+  }
 
-  });
+  /* =========================
+     FECHAR PLAYER
+  ========================= */
+  const close = e.target.closest(".close-player");
+  if (close) {
+
+    const player = document.getElementById("player");
+    player.classList.add("hidden-player");
+
+    document.querySelectorAll("audio").forEach(a => a.pause());
+    document.querySelectorAll(".track").forEach(t => t.classList.remove("playing"));
+  }
+
+  /* =========================
+     LIKE
+  ========================= */
+  const likeBtn = e.target.closest(".like");
+  if (likeBtn) {
+
+    e.stopPropagation();
+
+    const track = likeBtn.closest(".track");
+    const id = track.dataset.id;
+
+    likeBtn.classList.toggle("active");
+
+    likes[id] = likeBtn.classList.contains("active");
+    localStorage.setItem("likes", JSON.stringify(likes));
+
+    criarAlert(likes[id] ? "Curtido ❤️" : "Removido 💔");
+  }
+
+  /* =========================
+     TRADUÇÃO
+  ========================= */
+  const btnTraduzir = e.target.closest(".traduzir-btn");
+  if (btnTraduzir) {
+
+    const box = btnTraduzir.closest(".frase-box") || btnTraduzir.parentElement;
+    const frase = box.querySelector(".frase");
+
+    const isEnglish = frase.textContent === frase.dataset.en;
+
+    frase.textContent = isEnglish 
+      ? frase.dataset.pt 
+      : frase.dataset.en;
+
+    btnTraduzir.textContent = isEnglish ? "Translate" : "Traduzir";
+  }
 
 });
 
 
-/* 
-   FECHAR PLAYER
- */
+/* =========================
+   PLAY + PROGRESSO
+========================= */
 
-document.querySelector(".close-player").addEventListener("click", () => {
+document.addEventListener("click", (e) => {
 
-  player.classList.add("hidden-player");
+  const track = e.target.closest(".track");
+  if (!track) return;
 
-  /* para tudo */
-  document.querySelectorAll("audio").forEach(a => a.pause());
-
-  document.querySelectorAll(".track")
-    .forEach(t => t.classList.remove("playing"));
-
-});
-
-
-/* 
-   PLAY + PROGRESSO + TOGGLE
- */
-
-document.querySelectorAll(".track").forEach(track => {
+  // impedir conflito com botão like
+  if (e.target.closest(".like")) return;
 
   const audio = track.querySelector("audio");
   const bar = track.querySelector(".bar");
 
-  track.addEventListener("click", () => {
+  if (!audio) return;
 
-    /* toggle pause */
-    if (!audio.paused) {
-      audio.pause();
-      track.classList.remove("playing");
-      return;
-    }
+  /* toggle */
+  if (!audio.paused) {
+    audio.pause();
+    track.classList.remove("playing");
+    return;
+  }
 
-    /* parar outros */
-    document.querySelectorAll("audio").forEach(a => a.pause());
-    document.querySelectorAll(".track").forEach(t => t.classList.remove("playing"));
+  /* parar todos */
+  document.querySelectorAll("audio").forEach(a => a.pause());
+  document.querySelectorAll(".track").forEach(t => t.classList.remove("playing"));
 
-    audio.play();
-    track.classList.add("playing");
-
-  });
+  audio.play();
+  track.classList.add("playing");
 
   /* progresso */
-  audio.addEventListener("timeupdate", () => {
+  audio.ontimeupdate = () => {
     if (!audio.duration) return;
 
     const p = (audio.currentTime / audio.duration) * 100;
     bar.style.width = p + "%";
-  });
+  };
 
 });
 
 
-/* 
-   LIKE + LOCAL STORAGE
- */
+/* =========================
+   LIKE INIT (LOCAL STORAGE)
+========================= */
 
 const likes = JSON.parse(localStorage.getItem("likes")) || {};
 
 document.querySelectorAll(".track").forEach(track => {
-
   const id = track.dataset.id;
   const btn = track.querySelector(".like");
 
-  /* estado inicial */
   if (likes[id]) {
     btn.classList.add("active");
   }
-
-  btn.addEventListener("click", (e) => {
-
-    e.stopPropagation();
-
-    btn.classList.toggle("active");
-
-    likes[id] = btn.classList.contains("active");
-
-    localStorage.setItem("likes", JSON.stringify(likes));
-
-    criarAlert(likes[id] ? "Curtido ❤️" : "Removido 💔");
-
-  });
-
-});
-
-   document.addEventListener("click", (e) => {
-
-  // verifica se clicou no botão de traduzir
-  const btn = e.target.closest(".traduzir-btn");
-  if (!btn) return;
-
-  // pega a frase RELACIONADA ao botão
-  const frase = btn.previousElementSibling;
-
-  // descobre idioma atual
-  const isEnglish = frase.textContent === frase.dataset.en;
-
-  // alterna
-  frase.textContent = isEnglish 
-    ? frase.dataset.pt 
-    : frase.dataset.en;
-
-  // opcional: mudar texto do botão
-  btn.textContent = isEnglish ? "Translate" : "Traduzir";
-
 });
 
 </script>
-
 </body>
 </html>
 
