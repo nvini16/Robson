@@ -4,6 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+   <!-- cemitério -->
+
+   <!-- jaz um tradutor -->
+   <p class="frase" data-pt="..." data-en="...">...</p>
+<button class="btn traduzir-btn">Traduzir</button>
+
+<p class="frase" data-pt="..." data-en="...">...</p>
+<button class="btn traduzir-btn">Traduzir</button>
+   <!-- lápide -->
+
+   <!-- jaz um alert -->
+   data-alert="Saindo do álbum!"
+   <!-- lápide -->
+   
+
 <title>Michael Jackson</title>
 
 <style>
@@ -693,6 +708,28 @@ document.querySelectorAll(".track").forEach(track => {
     criarAlert(likes[id] ? "Curtido ❤️" : "Removido 💔");
 
   });
+
+});
+
+   document.addEventListener("click", (e) => {
+
+  // verifica se clicou no botão de traduzir
+  const btn = e.target.closest(".traduzir-btn");
+  if (!btn) return;
+
+  // pega a frase RELACIONADA ao botão
+  const frase = btn.previousElementSibling;
+
+  // descobre idioma atual
+  const isEnglish = frase.textContent === frase.dataset.en;
+
+  // alterna
+  frase.textContent = isEnglish 
+    ? frase.dataset.pt 
+    : frase.dataset.en;
+
+  // opcional: mudar texto do botão
+  btn.textContent = isEnglish ? "Translate" : "Traduzir";
 
 });
 
