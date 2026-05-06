@@ -143,17 +143,17 @@
 <!-- SCRIPT -->
 <script>
 
-/* =========================
+/* 
    TEMA
-========================= */
+ */
 
 function toggleTema() {
   document.body.classList.toggle("light");
 }
 
-/* =========================
+/* 
    SCROLL REVEAL
-========================= */
+ */
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -166,9 +166,9 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll(".hidden")
   .forEach(el => observer.observe(el));
 
-/* =========================
+/* 
    MÚSICA
-========================= */
+ */
 
 const music = document.getElementById("bg-music");
 let tocando = false;
@@ -178,9 +178,9 @@ function toggleMusic() {
   tocando = !tocando;
 }
 
-/* =========================
+/* 
    URNA DE ALERTS
-========================= */
+ */
 
 // cria a urna automaticamente
 const urna = document.createElement("div");
@@ -205,9 +205,9 @@ function criarAlert(mensagem) {
   }, 2500);
 }
 
-/* =========================
+/* 
    DISPARO AUTOMÁTICO
-========================= */
+ */
 
 document.querySelectorAll("[data-alert]").forEach(el => {
   el.addEventListener("click", e => {
