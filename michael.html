@@ -593,14 +593,21 @@ h1, h2 {
    <button class="like">❤</button>
 </div>
 
+<div class="track" data-id="who-is-it">
+   <span class="track-name">Who is it</span>
+   <audio sec="Michael Jackson - Who Is It (Official Video - Upscaled)(M4A_128K).m4a"></audio>
+   <div class="progress"><div class="bar"></div></div>
+   <button class="like">❤</button>
+</div>
+
   </div>
 </div>
 
 <script>
 
-/* =========================
+/* 
    ALERT SYSTEM
-========================= */
+ */
 
 const urna = document.createElement("div");
 urna.id = "alert-container";
@@ -621,9 +628,9 @@ function criarAlert(msg) {
   }, 2000);
 }
 
-/* =========================
+/* 
    EVENT DELEGATION (BASE)
-========================= */
+ */
 
 document.addEventListener("click", (e) => {
 
@@ -633,9 +640,9 @@ document.addEventListener("click", (e) => {
     criarAlert(alertEl.dataset.alert);
   }
 
-  /* =========================
+  /* 
      ABRIR PLAYER
-  ========================= */
+   */
   const card = e.target.closest(".album-card");
   if (card) {
 
@@ -656,9 +663,9 @@ document.addEventListener("click", (e) => {
     }
   }
 
-  /* =========================
+  /* 
      FECHAR PLAYER
-  ========================= */
+   */
   const close = e.target.closest(".close-player");
   if (close) {
 
@@ -669,9 +676,9 @@ document.addEventListener("click", (e) => {
     document.querySelectorAll(".track").forEach(t => t.classList.remove("playing"));
   }
 
-  /* =========================
+  /* 
      LIKE
-  ========================= */
+   */
   const likeBtn = e.target.closest(".like");
   if (likeBtn) {
 
@@ -688,9 +695,9 @@ document.addEventListener("click", (e) => {
     criarAlert(likes[id] ? "Curtido ❤️" : "Removido 💔");
   }
 
-  /* =========================
+  /* 
      TRADUÇÃO
-  ========================= */
+   */
   const btnTraduzir = e.target.closest(".traduzir-btn");
   if (btnTraduzir) {
 
@@ -709,9 +716,9 @@ document.addEventListener("click", (e) => {
 });
 
 
-/* =========================
+/* 
    PLAY + PROGRESSO
-========================= */
+ */
 
 document.addEventListener("click", (e) => {
 
@@ -751,9 +758,9 @@ document.addEventListener("click", (e) => {
 });
 
 
-/* =========================
+/* 
    LIKE INIT (LOCAL STORAGE)
-========================= */
+ */
 
 const likes = JSON.parse(localStorage.getItem("likes")) || {};
 
